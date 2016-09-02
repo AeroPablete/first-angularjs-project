@@ -1,11 +1,40 @@
 <html>
 <head>
+  <!-- Angular JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+  <style>
+    body {
+      font-family: 'Arial'
+    }
+  </style>
 </head>
 <body ng-app>
 
-  <div class="container">
-    Name: <input type="text" ng-model="name" />{{ name }}
+  <h3>String Interpolation</h3>
+  {{ 1 + 3 }}
+  <hr/>
+
+  <h3>Ng-Model</h3>
+  <div>
+    <label>Name</label>
+    <input type="text" ng-model="name" placeholder="Enter your name" />{{ name }}
+  </div>
+  <hr/>
+
+  <h3>Looping with the ng-repeat directive</h3>
+  <div ng-init="names=['Pepe', 'Mila', 'Pablo']">
+    <ul>
+      <li ng-repeat="name in names">{{ name }}</li>
+    </ul>
+  </div>
+  <hr/>
+
+  <h3>Filters</h3>
+  <div ng-init="customers=[{firstName: 'Pablo', lastName: 'Oñate', age: 32}, {firstName: 'Pepe', lastName: 'Oñate', age: 70}]">
+    <input type="text" ng-model="nameFilter" />
+    <ul>
+      <li ng-repeat="customer in customers | filter: {firstName: nameFilter} | orderBy: '-age'">{{ customer.firstName }} {{ customer.lastName | uppercase }} - <small>{{ customer.age }} y.o.</small></li>
+    </ul>
   </div>
 
 </body>
